@@ -497,7 +497,7 @@ small{
 }
 
 #box3{
-    background:url("img/bg_04.jpg") no-repeat center;
+    background:url("img/field-load.jpg") no-repeat center;
     background-size: cover;
 }
 
@@ -931,8 +931,8 @@ video {
     <!--/heading-block--></div>
     <ul id="sns-icon">
     <li><a href="https://www.instagram.com/daisuke_1234/"><img src="svg/ico_insta.svg" alt="Instagram"></a></li>
-    <li><a href="#"><img src="svg/ico_fb.svg" alt="Facebook"></a></li>
-    <li><a href="#"><img src="svg/ico_tw.svg" alt="Twitter"></a></li>
+    <li><a href="https://www.facebook.com/"><img src="svg/ico_fb.svg" alt="Facebook"></a></li>
+    <li><a href="https://twitter.com/"><img src="svg/ico_tw.svg" alt="Twitter"></a></li>
     </ul>
 <!--/slider--></div>
 </header>
@@ -954,31 +954,31 @@ video {
         </div>
 	<!--/box--></section>
 	
-	<section id="box2" class="box" data-section-name="Landscape">
+	<section id="box2" class="box" data-section-name="Ocean">
 		<div class="box-area">
-        <h2 class="eachTextAnime">Landscape</h2>
+        <h2 class="eachTextAnime">Ocean</h2>
         <a href="#gallery-1" class="gradient4 btn-view blurTrigger">View Photos</a>
         <!--/box-area--></div>
         <div id="gallery-1" class="hide-area">
-		<p><img src="img/01.jpg" alt=""><span class="caption">Landscape 2010</span></p>
-		<p><img src="img/02.jpg" alt=""><span class="caption">Landscape 2011</span></p>
-		<p><img src="img/03.jpg" alt=""><span class="caption">Landscape 2012</span></p>
-		<p><img src="img/04.jpg" alt=""><span class="caption">Landscape 2013</span></p>
-		<p><img src="img/06.jpg" alt=""><span class="caption">Landscape 2014</span></p>
+		<p><img src="img/01.jpg" alt=""><span class="caption">Hawaian View</span></p>
+		<p><img src="img/ship.jpg" alt=""><span class="caption">Cargo Ship</span></p>
+		<p><img src="img/diving-ocean.jpg" alt=""><span class="caption">Ocean 2012</span></p>
+		<p><img src="img/Okinawasea.jpg" alt=""><span class="caption">Ocean 2013</span></p>
+		<p><img src="img/06.jpg" alt=""><span class="caption">Ocean 2014</span></p>
 		</div>
 	<!--/box--></section>
 	
-	<section id="box3" class="box" data-section-name="Ocean">
+	<section id="box3" class="box" data-section-name="landscape">
 		<div class="box-area">
-		<h2 class="eachTextAnime">Ocean</h2>
+		<h2 class="eachTextAnime">landscape</h2>
         <a href="#gallery-2" class="gradient4 btn-view blurTrigger">View Photos</a>
         <!--/box-area--></div>
         <div id="gallery-2" class="hide-area">
-		<p><img src="img/07.jpg" alt=""><span class="caption">Woman 2001</span></p>
-		<p><img src="img/08.jpg" alt=""><span class="caption">Woman 2002</span></p>
-		<p><img src="img/09.jpg" alt=""><span class="caption">Woman 2003</span></p>
-		<p><img src="img/10.jpg" alt=""><span class="caption">Woman 2004</span></p>
-		<p><img src="img/11.jpg" alt=""><span class="caption">Woman 2005</span></p>
+		<p><img src="img/aomori-view.jpg" alt=""><span class="caption">Woman 2001</span></p>
+		<p><img src="img/tanada.jpg" alt=""><span class="caption">Woman 2002</span></p>
+		<p><img src="img/tokyo-view.jpg" alt=""><span class="caption">Woman 2003</span></p>
+		<p><img src="img/tanada.jpg" alt=""><span class="caption">Woman 2004</span></p>
+		<p><img src="img/field-load.jpg" alt=""><span class="caption">Woman 2005</span></p>
 		</div>
 	<!--/box--></section>
 	
@@ -1045,7 +1045,7 @@ video {
 	</main>
 <?php
 
-    session_start();
+    // session_start();
     date_default_timezone_set('Asia/Tokyo');
     $dsn = 'mysql:dbname=sample;host=localhost;charset=utf8';
     $db_user = 'root';
