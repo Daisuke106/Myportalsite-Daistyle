@@ -671,6 +671,9 @@ form.sign-in-form {
 					</div>
 					<input type="submit" value="Login" class="btn solid" />
 
+					<button type="button" onclick="openResetPasswordWindow()">Forgot Password</button>
+
+
 				</form>
 
 
@@ -809,6 +812,10 @@ form.sign-in-form {
 
 	<script>
 
+function openResetPasswordWindow() {
+            // 別のウィンドウを開く
+            window.open("forgot_password.php", "_blank", "width=500, height=400");
+        }
 
 
 function showAlert(message) {
