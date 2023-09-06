@@ -9,6 +9,12 @@ $db_password = '';
 require '..\vendor\autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
 
 function sendCompleteEmailResponse($email, $username, $app_password, $id) {
     mb_language('uni');
@@ -29,6 +35,25 @@ function sendCompleteEmailResponse($email, $username, $app_password, $id) {
         $toname = $username;
     
         $subject = '【登録完了】Daistyleへの会員登録が完了しました。';
+
+        // Generate the QR code containing the $id
+        $data_string = $id;
+        $qr_code = QrCode::create($data_string)
+            ->setEncoding(new Encoding('UTF-8'))
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+            ->setSize(300)
+            ->setMargin(30)
+            ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin())
+            ->setForegroundColor(new Color(0, 0, 0))
+            ->setBackgroundColor(new Color(255, 255, 255));
+
+        $writer = new PngWriter();
+        $qrCodeImage = $writer->write($qr_code);
+
+        $attachmentPath = "qrcode_img/{$idname}.png"; // Replace with the desired path to save the QR code image
+        //ダブルクォーテーションで囲むと変数が展開される
+        $qrCodeImage -> saveToFile($attachmentPath);
+
         $body =  "$idname 様\n"
                 ."Daistyleへの会員登録ありがとうございます。" . "\n"
                 ."\n"
@@ -37,6 +62,9 @@ function sendCompleteEmailResponse($email, $username, $app_password, $id) {
                 ."\n"
                 . "id番号は" . $id . "です。" . "\n"
                 . "id番号はログイン時に必要になります。" . "\n"
+                ."添付画像のQRコードは、実店舗の際に使用します。" . "\n"
+                ."QRコードを提示することで、実店舗でのお買い物ができます。（実装予定）" . "\n"
+                ."QRコードは、アプリのQRコード読み取り機能で読み取ることができます。（実装予定）" . "\n"
                 . "id番号を忘れないようにしてください。" . "\n"
                 ."ショッピングをお楽しみください！！" . "\n"
                 . "\n"
@@ -70,9 +98,15 @@ function sendCompleteEmailResponse($email, $username, $app_password, $id) {
         $mail->Subject = $subject; 
         $mail->Body    = $body;  
     
+        // Attach the QR code image to the email
+        $mail->addAttachment($attachmentPath, 'qr_code.png'); // Attach the QR code image
+
         // 送信
         $mail->send();
         echo "ユーザー: $username に対するメール送信成功<br>"; // 送信成功時にメッセージを返す
+
+        // Delete the QR code image
+        unlink($attachmentPath); // Delete the QR code image
     } catch (Exception $e) {
         // エラーの場合
         echo "ユーザー: $username に対するメール送信に失敗しました: " . $mail->ErrorInfo;

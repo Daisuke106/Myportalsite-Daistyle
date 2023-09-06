@@ -78,6 +78,65 @@
 //         echo "エラーが発生しました: " . $e->getMessage();
 //     }
 // }
+
+
+// PHPMailerのオートロードを読み込む
+require '../../vendor/autoload.php';
+
+// セッションを開始
+session_start();
+
+// 会員情報からユーザー名とメールアドレスを取得
+if (isset($_SESSION["user_id"])) {
+    $user_id = $_SESSION["user_id"];
+    // データベースからユーザー名とメールアドレスを取得するクエリを実行
+    // $username と $email に値を設定する
+
+    // ここでデータベースから $username と $email を取得するクエリを実行すると仮定
+}
+
+// 購入を希望する（クイック購入）ボタンがクリックされた場合
+if (isset($_POST["purchase-button"])) {
+    // ここで購入処理を行う
+
+    // 購入が成功した場合、購入完了のメールを送信
+    if (isset($username) && isset($email)) {
+        // PHPMailerのインスタンスを作成
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+
+        $to = $email;
+
+        // SMTPを使用する場合
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; // SMTPサーバーのホスト名
+        $mail->SMTPAuth = true;
+        $mail->Username = $username; // SMTPサーバーのユーザー名
+        $mail->Password = $app_password; // SMTPサーバーのパスワード
+        $mail->SMTPSecure = 'tls'; // TLSを使用
+        $mail->Port = 587; // ポート番号（SMTPサーバーに合わせて設定）
+
+        // メール設定
+        $mail->setFrom('k022c2145@g.neec.ac.jp', 'Daistyle');
+        $mail->addAddress($email, $username); // 宛先のメールアドレスとユーザー名
+        $mail->Subject = '購入完了のお知らせ';
+
+        // メール本文
+        $mail->Body = "ようこそ、$username さん。\n\nご購入いただき、ありがとうございます。\n\n購入明細は以下の通りです。\n\n商品名: 一眼レフカメラ\n価格: ¥65,000\n\nお届け予定日: {ここにお届け予定日を挿入}\n\nお支払い方法: {ここに支払い方法を挿入}\n\nご質問やお問い合わせがある場合は、お気軽にご連絡ください。\n\nDaistyle カスタマーサポート";
+
+        // メールを送信
+        if (!$mail->send()) {
+            echo 'メールの送信に失敗しました。エラー: ' . $mail->ErrorInfo;
+        } else {
+            echo '購入完了のメールを送信しました。';
+        }
+    }
+}
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -232,6 +291,23 @@ li {
   background-color: #555;
 }
 
+#purchase button [type="purchase-button"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#purchase button [type="purchase-button"]:hover {
+  background-color: #555;
+}
+
+
+
+
 /* レビュー一覧のスタイル */
 #reviews {
   margin-top: 30px;
@@ -265,6 +341,44 @@ li {
 
 
 
+
+
+
+
+/* レビューフォームのスタイル */
+#review-form {
+  margin-top: 20px;
+}
+
+#review-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#review-form input[type="text"],
+#review-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Apply styles to buttons with the "custom-button" class */
+.custom-button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for buttons with the "custom-button" class */
+.custom-button:hover {
+  background-color: #555;
+}
 
 
 
@@ -609,6 +723,9 @@ SP
             <span class="cart-count">0</span> <!-- カート内の商品数を表示する部分 -->
             <img src="../img/cart-icon.png" alt="Cart">
         </div>
+        <?php if (isset($username)) : ?>
+            <p>ようこそ <?php echo $username; ?> さん</p>
+        <?php endif; ?>
 
         <nav id="navi">
             <ul class="nav-menu">
@@ -689,8 +806,11 @@ SP
                 <!-- レビューはここに動的に追加される -->
             </ul>
             </div>
+            <div id="purchase">
+            <button class="custom-button" type="purchase-button">購入を希望する（クイック購入）</button>
+            </div>
             <!-- 購入を希望するボタン -->
-        <button id="purchase-button">購入を希望する（クイック購入）</button>
+        <button id="purchase-button">購入を希望する（フォームを表示）</button>
             <!-- 購入情報入力フォーム -->
     <div id="purchase-form" style="display: none;">
         <h3>購入情報を入力してください</h3>

@@ -962,9 +962,9 @@ video {
         <div id="gallery-1" class="hide-area">
 		<p><img src="img/01.jpg" alt=""><span class="caption">Hawaian View</span></p>
 		<p><img src="img/ship.jpg" alt=""><span class="caption">Cargo Ship</span></p>
-		<p><img src="img/diving-ocean.jpg" alt=""><span class="caption">Ocean 2012</span></p>
-		<p><img src="img/Okinawasea.jpg" alt=""><span class="caption">Ocean 2013</span></p>
-		<p><img src="img/06.jpg" alt=""><span class="caption">Ocean 2014</span></p>
+		<p><img src="img/diving-ocean.jpg" alt=""><span class="caption">Best Friend for classmate</span></p>
+		<p><img src="img/Okinawasea.jpg" alt=""><span class="caption">The sea is the best!!</span></p>
+		<p><img src="img/06.jpg" alt=""><span class="caption">Big waves!!</span></p>
 		</div>
 	<!--/box--></section>
 	
@@ -974,11 +974,11 @@ video {
         <a href="#gallery-2" class="gradient4 btn-view blurTrigger">View Photos</a>
         <!--/box-area--></div>
         <div id="gallery-2" class="hide-area">
-		<p><img src="img/aomori-view.jpg" alt=""><span class="caption">Woman 2001</span></p>
-		<p><img src="img/tanada.jpg" alt=""><span class="caption">Woman 2002</span></p>
-		<p><img src="img/tokyo-view.jpg" alt=""><span class="caption">Woman 2003</span></p>
-		<p><img src="img/tanada.jpg" alt=""><span class="caption">Woman 2004</span></p>
-		<p><img src="img/field-load.jpg" alt=""><span class="caption">Woman 2005</span></p>
+		<p><img src="img/aomori-view.jpg" alt=""><span class="caption">Aomori is a beautiful city</span></p>
+		<p><img src="img/tanada.jpg" alt=""><span class="caption">Terraced rice paddies after the snow melts</span></p>
+		<p><img src="img/tokyo-view.jpg" alt=""><span class="caption">Big city in Tokyo!!</span></p>
+		<p><img src="img/tokyo-station.jpg" alt=""><span class="caption">Fantastic Tokyo Station</span></p>
+		<p><img src="img/field-load.jpg" alt=""><span class="caption">Rural road with no traffic lights</span></p>
 		</div>
 	<!--/box--></section>
 	

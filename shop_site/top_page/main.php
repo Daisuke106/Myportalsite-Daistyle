@@ -603,6 +603,12 @@ window.onload = function() {
                             sessionStorage.setItem('loginTime', Date.now());
                             // main.phpに遷移
                             window.location.href = "main.php";
+                        } else if (response === "success_unconfirmed") {
+
+                            // Redirect to confirmation_input_page.php
+                            alert("アカウントが未承認です。確認コードを入力してください。メールをお送りします。");// アカウント未承認時のレスポンス
+                            window.location.href = "../../Login&Register_form/confirmation_input_page.php";
+
                         } else {
                             alert(response); // ログイン失敗時のエラーメッセージを表示
                             window.location.href = "main.php"; // アラートメッセージを表示した後にmain.phpに遷移

@@ -1,18 +1,27 @@
-<?php
-require_once __DIR__ . '../vendor/autoload.php';
+<?php //qr.php
 
-use Endroid\QrCode\Builder\Builder;
+require_once( __DIR__ . '../../vendor/autoload.php' );
 
-// QRコードの内容
-$qrContent = 'こんにちは';
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
 
-// QRコードを生成
-$qrCode = Builder::create()
-    ->data($qrContent)
-    ->size(300)
-    ->build();
+$data_string = "https://white-sesame.jp";
 
-// QRコードの画像を表示
-header('Content-Type: image/png');
-echo $qrCode->getResult()->getString();
+$qr_code = QrCode::create( $data_string )
+    -> setEncoding( new Encoding( 'UTF-8' ) )
+    -> setErrorCorrectionLevel( new ErrorCorrectionLevelLow() )
+    -> setSize( 300 )
+    -> setMargin( 30 )
+    -> setRoundBlockSizeMode( new RoundBlockSizeModeMargin() )
+    -> setForegroundColor( new Color( 0, 0, 0 ) )
+    -> setBackgroundColor( new Color( 255, 255, 255 ) );
+
+$writer = new PngWriter();
+$result = $writer->write( $qr_code );
+header('Content-Type: '.$result->getMimeType());
+echo $result->getString();
 ?>
