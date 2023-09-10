@@ -441,7 +441,13 @@ SP
             このサイトの詳細の機能は<a href="http://localhost:3000/introduction_page/introduce_starwars.php">こちら</a>からご確認ください。
           </p>
           <p>
-            私のお気に入りミュージック！
+            マイページは<a href="http://localhost:3000/my_page/qr_login.php">こちら</a>からアクセスしてください。
+          </p>
+          <p>
+          ※ログインには、メールに添付のQRコードで認証を行います。<br>ログイン回数やアカウントの削除などが行えます。
+          </p>
+          <p>
+            以下は私のお気に入りミュージックです！
             </p>
           <iframe id="embedPlayer" src="https://embed.music.apple.com/jp/playlist/%E3%83%88%E3%83%83%E3%83%97100-%E6%97%A5%E6%9C%AC/pl.043a2c9876114d95a4659988497567be?app=music&amp;itsct=music_box_player&amp;itscg=30200&amp;ls=1&amp;theme=auto" height="450px" frameborder="0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *; clipboard-write" style="width: 100%; max-width: 660px; overflow: hidden; border-radius: 10px; transform: translateZ(0px); animation: 2s ease 0s 6 normal none running loading-indicator; background-color: rgb(228, 228, 228);"></iframe>
             <iframe id="embedPlayer" src="https://embed.music.apple.com/jp/playlist/wwdc23-%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0-%E3%83%91%E3%83%AF%E3%83%BC%E3%82%A2%E3%83%83%E3%83%97/pl.1e055c5c39654b1599f339ad00e68028?app=music&amp;itsct=music_box_player&amp;itscg=30200&amp;ls=1&amp;theme=auto" height="450px" frameborder="0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *; clipboard-write" style="width: 100%; max-width: 660px; overflow: hidden; border-radius: 10px; transform: translateZ(0px); animation: 2s ease 0s 6 normal none running loading-indicator; background-color: rgb(228, 228, 228);"></iframe>

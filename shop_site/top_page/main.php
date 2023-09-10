@@ -462,6 +462,7 @@ SP
       <h1 class="site-title">
         <a href="main.php"><img src="../img/text.svg" alt="Daistyle"></a>
       </h1>
+      <h3><a href="http://localhost:3000/my_page/qr_login.php">マイページ（QRコードをご用意ください）</a></h3>
 
       
 

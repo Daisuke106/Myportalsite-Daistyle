@@ -994,6 +994,9 @@ signupForm.addEventListener("submit", async (event) => {
         if (result === "success") {
             alert("会員登録が完了しました。確認コードが送信されました。");
 
+			// Gmailのウェブサイトを新しいタブで開く
+			window.open('https://mail.google.com', '_blank');
+
             // モーダルウィンドウを表示
             const modal = document.getElementById("myModal");
             modal.style.display = "block";
@@ -1126,6 +1129,9 @@ signinForm.addEventListener("submit", async (event) => {
 			alert("アカウントが未承認です。確認コードを入力してください。メールをお送りします。");// アカウント未承認時のレスポンス
             // 会員登録成功かつ未確認の場合、確認コード入力ページに遷移
             window.location.href = "confirmation_input_page.php";
+
+			// Gmailのウェブサイトを新しいタブで開く
+			window.open('https://mail.google.com', '_blank');
         } else if (!result.includes("メール送信成功")) {
             alert(resultArray[0]); // エラーメッセージを表示
         }

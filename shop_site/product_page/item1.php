@@ -710,6 +710,34 @@ SP
     margin-bottom: 5px;
   }
 }
+
+
+
+
+/* パンくずリストのスタイル */
+.breadcrumbs {
+    margin-top: 20px;
+}
+
+.breadcrumbs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumbs li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.breadcrumbs li:last-child {
+    font-weight: bold;
+}
+
+
+
+
+
 </style>
 
 </head>
@@ -754,6 +782,13 @@ SP
 
     <main>
       <div class="content wrapper">
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="../top_page/main.php">ホーム</a></li>
+                <li>-></li>
+                <li>一眼レフカメラ</li>
+            </ul>
+        </nav>
         <h1 class="page-title">一眼レフカメラ</h1>
         <div id="item">
           <div class="item-img">
@@ -1108,7 +1143,7 @@ $(document).ready(function() {
         if ($('#purchase-form').is(':visible')) {
             // 購入フォームが既に表示されている場合、閉じる
             $('#purchase-form').slideUp();
-            $('#purchase-button').text('購入を希望する（クイック購入）'); // ボタンテキストを元に戻す
+            $('#purchase-button').text('購入を希望する（フォームを表示）'); // ボタンテキストを元に戻す
         } else {
             // 購入フォームが非表示の場合、表示する
             $('#purchase-form').slideDown();
