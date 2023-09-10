@@ -447,6 +447,10 @@ SP
           ※ログインには、メールに添付のQRコードで認証を行います。<br>ログイン回数やアカウントの削除などが行えます。
           </p>
           <p>
+            このサイトの詳しいソースコードは、
+            <a href="https://github.com/Daisuke106/Myportalsite-Daistyle">こちら</a>からご確認ください。
+          </p>
+          <p>
             以下は私のお気に入りミュージックです！
             </p>
           <iframe id="embedPlayer" src="https://embed.music.apple.com/jp/playlist/%E3%83%88%E3%83%83%E3%83%97100-%E6%97%A5%E6%9C%AC/pl.043a2c9876114d95a4659988497567be?app=music&amp;itsct=music_box_player&amp;itscg=30200&amp;ls=1&amp;theme=auto" height="450px" frameborder="0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *; clipboard-write" style="width: 100%; max-width: 660px; overflow: hidden; border-radius: 10px; transform: translateZ(0px); animation: 2s ease 0s 6 normal none running loading-indicator; background-color: rgb(228, 228, 228);"></iframe>
