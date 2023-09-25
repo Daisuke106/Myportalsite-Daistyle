@@ -3,14 +3,20 @@ session_start(); // セッションを開始
 
 // ログアウトボタンがクリックされた場合
 if (isset($_POST['logout'])) {
-    // セッション変数をすべて削除
+    // セッションを削除
     session_unset();
-
-    // セッションを破棄してログアウト
     session_destroy();
 
-    // qr_login.php にリダイレクト
-    header('Location: qr_login.php');
+    // main.phpのセッションも削除
+    if (isset($_SESSION['loggedIn'])) {
+        unset($_SESSION['loggedIn']);
+    }
+    if (isset($_SESSION['loginTime'])) {
+        unset($_SESSION['loginTime']);
+    }
+
+    // main.phpにリダイレクト
+    header('Location: ../shop_site/top_page/main.php');
     exit;
 }
 

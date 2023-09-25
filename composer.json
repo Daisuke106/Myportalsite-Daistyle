@@ -1,0 +1,7 @@
+{
+    "require": {
+        "paypayopa/php-sdk": "^2.0",
+        "phpmailer/phpmailer": "^6.8",
+        "endroid/qrcode": "^4.8"
+    }
+}
