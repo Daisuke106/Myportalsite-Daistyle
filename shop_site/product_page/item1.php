@@ -849,7 +849,7 @@ SP
       <div class="content wrapper">
         <nav class="breadcrumbs">
             <ul>
-                <li><a href="../top_page/main.php">ホーム</a></li>
+                <li><a href="../top_page/products.php">ホーム</a></li>
                 <li>-></li>
                 <li>一眼レフカメラ</li>
             </ul>
@@ -1497,7 +1497,7 @@ window.onload = function() {
             sessionStorage.removeItem('loggedIn');
             sessionStorage.removeItem('loginTime');
             alert("セッションが無効になりました。再度ログインしてください。");
-            window.location.href = "main.php";
+            window.location.href = "item1.php";
         } else {
             // ログイン成功した場合はProgressBarのアニメーションを開始
             var hasShownSplash = sessionStorage.getItem('hasShownSplash');

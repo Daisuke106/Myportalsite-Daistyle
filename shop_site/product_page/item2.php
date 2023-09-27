@@ -596,10 +596,99 @@ SP
     margin-bottom: 5px;
   }
 }
+
+
+
+
+
+/*========= LoadingのためのCSS ===============*/
+
+/* Loading背景画面設定　*/
+#splash {
+    /*fixedで全面に固定*/
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	text-align:center;
+	color:#fff;
+}
+
+/* Loading画像中央配置　*/
+#splash_text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+    z-index: 999;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	width: 100%;
+}
+
+/*IE11対策用バーの線の高さ※対応しなければ削除してください*/
+#splash_text svg{
+    height: 2px;
+}
+
+/*割れる画面のアニメーション*/
+.loader_cover {
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+    transition: all .2s cubic-bezier(.04, .435, .315, .9);
+    transform: scaleY(1);
+}
+/*上の画面*/
+.loader_cover-up {
+    transform-origin: center top;
+}
+
+/*下の画面*/
+.loader_cover-down {
+    position: absolute;
+    bottom: 0;
+    transform-origin: center bottom;
+}
+/*クラス名がついたらY軸方向に0*/
+.coveranime {
+    transform: scaleY(0);
+}
+
+/* パンくずリストのスタイル */
+.breadcrumbs {
+    margin-top: 20px;
+}
+
+.breadcrumbs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumbs li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.breadcrumbs li:last-child {
+    font-weight: bold;
+}
+
 </style>
 
 </head>
+
+
 <body>
+
+<div id="splash">
+<div id="splash_text">
+<a><img src="../img/text.svg" alt="Daistyle"></a>
+</div>
+<div class="loader_cover loader_cover-up"></div><!--上に上がるエリア-->
+<div class="loader_cover loader_cover-down"></div><!--下に下がるエリア-->
+<!--/splash--></div>
+<div id="container">
     <header id="header" class="wrapper">
         <div class="site-title">
             <a href="../top_page/main.php"><img src="../img/text.svg" alt="Daistyle"></a>
@@ -637,6 +726,13 @@ SP
 
     <main>
       <div class="content wrapper">
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="../top_page/products.php">ホーム</a></li>
+                <li>-></li>
+                <li>アイテム２</li>
+            </ul>
+        </nav>
         <h1 class="page-title">一眼レフカメラ</h1>
         <div id="item">
           <div class="item-img">
@@ -822,6 +918,8 @@ SP
       </ul>
       <p class="copyright">&copy; Daistyle</p>
     </footer>
+
+    </div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -1217,6 +1315,101 @@ $('#logout-button').on('click', function() {
     return currentUser && currentUser.username === username;
   }
 });
+
+
+window.onload = function() {
+    var isLoggedIn = sessionStorage.getItem('loggedIn');
+    
+    if (!isLoggedIn) {
+        // セッションにログイン情報がない場合、ログイン情報の入力を求める
+        var usernameOrId = prompt("ユーザー名またはID番号を入力してください:");
+        var password = prompt("パスワードを入力してください:", "");
+
+        if (usernameOrId !== null && password !== null) {
+            // ログイン情報を送信
+            $.ajax({
+                type: "POST",
+                url: "../../Login&Register_form/process_signin.php",
+                data: { username: usernameOrId, password: password },
+                success: function(response) {
+                    if (response === "success") {
+                        // ログイン成功時の処理
+                        sessionStorage.setItem('loggedIn', 'true');
+                        sessionStorage.setItem('loginTime', Date.now());
+                        window.location.href = "item1.php";
+                    } else if (response === "success_unconfirmed") {
+                        alert("アカウントが未承認です。確認コードを入力してください。メールをお送りします。");
+                        window.location.href = "../../Login&Register_form/confirmation_input_page.php";
+                    } else {
+                        alert(response);
+                        window.location.href = "item2.php";
+                    }
+                }
+            });
+        } else {
+            window.location.href = "../../Login&Register_form/loginform18star1.php";
+        }
+    } else {
+        var lastLoginTime = sessionStorage.getItem('loginTime');
+        var currentTime = Date.now();
+        var fifteenMinutes = 15 * 60 * 1000; // 15分のミリ秒数
+
+        if (lastLoginTime && currentTime - lastLoginTime >= fifteenMinutes) {
+            // 15分以上経過している場合、再度ログインを要求
+            sessionStorage.removeItem('loggedIn');
+            sessionStorage.removeItem('loginTime');
+            alert("セッションが無効になりました。再度ログインしてください。");
+            window.location.href = "main.php";
+        } else {
+            // ログイン成功した場合はProgressBarのアニメーションを開始
+            var hasShownSplash = sessionStorage.getItem('hasShownSplash');
+
+            // ローディング画面を表示したことがなければ、表示する
+            if (!hasShownSplash) {
+                // ローディング画面を表示する
+                $("#splash").show();
+                // ローディング画面を表示したことを記録する
+                sessionStorage.setItem('hasShownSplash', true);
+            } else {
+                // ローディング画面を非表示にする
+                $("#splash").hide();
+            }
+
+            var bar = new ProgressBar.Line(splash_text, {
+                easing: 'easeOut',
+                duration: 1500,
+                strokeWidth: 0.2,
+                color: '#555',
+                trailWidth: 0.2,
+                trailColor: '#bbb',
+                text: {
+                    style: {
+                        position: 'absolute',
+                        left: '50%',
+                        top: '50%',
+                        padding: '0',
+                        margin: '-30px 0 0 0',
+                        transform: 'translate(-50%,-50%)',
+                        'font-size': '1rem',
+                        color: '#fff',
+                    },
+                    autoStyleContainer: false
+                },
+                step: function(state, bar) {
+                    bar.setText(Math.round(bar.value() * 100) + ' %');
+                }
+            });
+
+            // アニメーションスタート
+            bar.animate(1.0, function () {
+                $("#splash_text").fadeOut(10);
+                $(".loader_cover-up").addClass("coveranime");
+                $(".loader_cover-down").addClass("coveranime");
+                $("#splash").fadeOut();
+            });
+        }
+    }
+};
 </script>
 </body>
 </html>
